@@ -1,0 +1,13 @@
+.link-hover {
+    transition: 0.2s;
+}
+
+.link-hover:hover {
+    color: var(--link-hover);
+}
+
+@media (prefers-color-scheme: dark) {
+    .link-hover:hover {
+        color: var(--dark-link-hover);
+    }
+}

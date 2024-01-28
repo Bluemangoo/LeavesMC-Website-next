@@ -1,0 +1,10 @@
+{
+  "title": {
+    "home": "Home",
+    "downloads": "Downloads",
+    "404": "404 Not Found"
+  },
+  "navbar": {
+    "software": "Software"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "title": {
+    "home": "主页",
+    "downloads": "下载",
+    "404": "404 Not Found"
+  },
+  "navbar": {
+    "software": "软件"
+  }
+}
