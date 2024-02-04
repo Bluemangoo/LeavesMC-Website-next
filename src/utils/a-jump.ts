@@ -1,11 +1,25 @@
 import route from "./route.ts";
 import { Component, ShallowRef, shallowRef } from "vue";
+import PageRedirect from "@/pages/page-redirect.vue";
 
 export default class {
     constructor() {
-        const r = route?.[this.url] ?? route?.[this.url + "/"] ?? route["/404/"];
+        let url = this.url;
+        let r = route?.[this.url] ?? route?.[this.url + "/"] ?? route["/404/"];
+        while (r.type == "redirect") {
+            url = r.url;
+            // noinspection HttpUrlsUsage
+            if (url.startsWith("http://") || url.startsWith("https://")) {
+                window.location.replace(url);
+            }
+            r = route?.[r.url] ?? route?.[r.url + "/"] ?? route["/404/"];
+        }
         this.title = r.title;
         this.component = shallowRef(r.component);
+        if (this.url != url) {
+            this.url = url;
+            window.history.replaceState("", "", this.url);
+        }
 
         const that = this;
         document.body.addEventListener("click", function(event) {
@@ -25,7 +39,7 @@ export default class {
 
     url: string = window.location.pathname;
     component: ShallowRef<Component>;
-    title: string;
+    title: string = "";
 
     to(element: HTMLAnchorElement) {
         const url = element.getAttribute("href");
@@ -47,9 +61,24 @@ export default class {
         document.title = this.title;
     }
 
-    getComponent(url: string) {
-        const r = route?.[url] ?? route?.[url + "/"] ?? route["/404/"];
+    getComponent(url: string): void {
+        let r = route?.[this.url] ?? route?.[this.url + "/"] ?? route["/404/"];
+        while (r.type == "redirect") {
+            url = r.url;
+            // noinspection HttpUrlsUsage
+            if (url.startsWith("http://") || url.startsWith("https://")) {
+                this.title = "Redirecting | LeavesMC";
+                this.component.value = PageRedirect;
+                window.location.replace(url);
+                return;
+            }
+            r = route?.[r.url] ?? route?.[r.url + "/"] ?? route["/404/"];
+        }
         this.title = r.title;
         this.component.value = r.component;
+        if (this.url != url) {
+            this.url = url;
+            window.history.replaceState("", "", this.url);
+        }
     }
 }
