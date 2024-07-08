@@ -2,7 +2,7 @@ import route from "./route.ts";
 import { Component, ShallowRef, shallowRef } from "vue";
 import PageRedirect from "@/pages/page-redirect.vue";
 
-export default class {
+class AJump {
     constructor() {
         let url = this.url;
         let r = route?.[this.url] ?? route?.[this.url + "/"] ?? route["/404/"];
@@ -56,12 +56,23 @@ export default class {
         }
     }
 
+    toUrl(url: string) {
+        // noinspection HttpUrlsUsage
+        if (url.startsWith("http://") || url.startsWith("https://")) {
+            window.open(url);
+        } else {
+            window.history.pushState("", "", url);
+            this.url = url;
+            this.update();
+        }
+    }
+
     update() {
         this.getComponent(this.url);
         document.title = this.title;
     }
 
-    getComponent(url: string): void {
+    protected getComponent(url: string): void {
         let r = route?.[this.url] ?? route?.[this.url + "/"] ?? route["/404/"];
         while (r.type == "redirect") {
             url = r.url;
@@ -82,3 +93,6 @@ export default class {
         }
     }
 }
+
+const aJump = new AJump();
+export default aJump;

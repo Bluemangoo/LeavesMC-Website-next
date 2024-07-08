@@ -6,5 +6,15 @@
   },
   "navbar": {
     "software": "软件"
+  },
+  "index": {
+    "button": {
+      "downloads": "下载",
+      "document": "文档"
+    },
+    "text": {
+      "description1": "专为生电设计",
+      "description2": "LeavesMC 改善了 Minecraft 的生态系统，提供快速、安全和稳定的软件，作为最特立独行的组织提供快速迭代和健康支持。"
+    }
   }
 }

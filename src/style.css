@@ -60,3 +60,8 @@ body {
     width: 100vw;
     margin: 0;
 }
+
+.sb{
+    border-width: 2px;
+    border-color: #000;
+}

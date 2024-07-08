@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import AJump from "@/utils/a-jump.ts";
 import Navbar from "@/components/navbar.vue";
+import aJump from "@/utils/a-jump.ts";
 
-const aJump = new AJump();
 aJump.update();
 </script>
 
 <template>
     <navbar />
-    <div class="mt-12 w-full max-w-7xl mx-auto p-4 flex">
+    <div class="w-full max-w-7xl mx-auto flex">
         <component v-bind:is="aJump.component.value"></component>
     </div>
 </template>
