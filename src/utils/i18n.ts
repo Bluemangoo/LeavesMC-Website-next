@@ -1,21 +1,27 @@
 import { createI18n } from "vue-i18n";
 import en from "@/languages/en.json";
-import zh from "@/languages/zh.json";
+import zh from "@/languages/zh-CN.json";
 import zhMeme from "@/languages/zh-MEME.json";
+import { ref } from "vue";
 
 const navLang = navigator.language;
-const localLang = (navLang === "zh-CN" || navLang === "en-US") ? navLang : false;
+const localLang = navLang == "zh-CN" ? "zh-CN" : navLang == "en-US" ? "en" : false;
 const storeLang = localStorage.getItem("language");
-let lang = storeLang || localLang || ("en-US");
+const currentLang = ref(storeLang || localLang || "en");
+currentLang.value = ["zh-CN", "zh-MEME", "en"].includes(currentLang.value)
+    ? currentLang.value
+    : currentLang.value.startsWith("zh")
+      ? "zh-CN"
+      : "en";
 if (!storeLang) {
-    localStorage.setItem("language", lang);
+    localStorage.setItem("language", currentLang.value);
 }
 const i18n = createI18n({
-    locale: lang,
+    locale: currentLang.value,
     fallbackLocale: "en",
     messages: {
         en,
-        zh,
+        "zh-CN": zh,
         "zh-MEME": zhMeme
     }
 });
@@ -24,9 +30,21 @@ const t = (...args: string[]): string => {
     return (i18n.global.t as Function)(...args);
 };
 
-function changeLocale(lang: "en" | "zh" | "zh-MEME") {
-    i18n.global.locale = lang;
-    localStorage.setItem("language", lang);
+const langs = ["zh-CN", "zh-MEME", "en"];
+
+const langNames: Record<string, string> = {
+    "zh-CN": "简体中文",
+    "zh-MEME": "梗体中文",
+    en: "English"
+};
+
+function changeLocale(lang: "en" | "zh-CN" | "zh-MEME" | string) {
+    const lang2 = <"en" | "zh-CN" | "zh-MEME">(
+        (["zh-CN", "zh-MEME", "en"].includes(lang) ? lang : lang == "zh" ? "zh-CN" : "en")
+    );
+    i18n.global.locale = lang2;
+    localStorage.setItem("language", lang2);
+    currentLang.value = lang2;
 }
 
-export { i18n, t, changeLocale };
+export { i18n, t, changeLocale, currentLang, langs, langNames };

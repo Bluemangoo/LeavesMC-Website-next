@@ -40,8 +40,17 @@
     background: #f8faff;
 }
 
+.background {
+    background: #f8faff;
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
+        background: #181a1b;
+        color: rgba(255, 255, 255, 0.68);
+    }
+
+    .background {
         background: #181a1b;
     }
 }
@@ -61,7 +70,7 @@ body {
     margin: 0;
 }
 
-.sb{
+.sb {
     border-width: 2px;
     border-color: #000;
 }
