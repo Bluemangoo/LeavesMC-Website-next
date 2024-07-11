@@ -5,24 +5,80 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-style: normal;
     font-weight: 400;
-    src: url('/src/assets/fonts/poppins-latin-400-normal.woff2') format('woff2')
+    src: url("/src/assets/fonts/poppins-latin-400-normal.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-style: normal;
     font-weight: 500;
-    src: url('/src/assets/fonts/poppins-latin-500-normal.woff2') format('woff2')
+    src: url("/src/assets/fonts/poppins-latin-500-normal.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: 'Poppins';
+    font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
-    src: url('/src/assets/fonts/poppins-latin-600-normal.woff2') format('woff2')
+    src: url("/src/assets/fonts/poppins-latin-600-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "MiSans";
+    font-style: normal;
+    font-weight: 100;
+    src: url("/src/assets/fonts/MiSans-Thin.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "MiSans";
+    font-style: normal;
+    font-weight: 200;
+    src: url("/src/assets/fonts/MiSans-ExtraLight.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "MiSans";
+    font-style: normal;
+    font-weight: 300;
+    src: url("/src/assets/fonts/MiSans-Light.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "MiSans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/src/assets/fonts/MiSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "MiSans";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/src/assets/fonts/MiSans-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "MiSans";
+    font-style: normal;
+    font-weight: 600;
+    src: url("/src/assets/fonts/MiSans-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "MiSans";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/src/assets/fonts/MiSans-Bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "MiSans";
+    font-style: normal;
+    font-weight: 900;
+    src: url("/src/assets/fonts/MiSans-Heavy.woff2") format("woff2");
 }
 
 :root {
